@@ -9,24 +9,24 @@ void removeLines(char *str) {
 }
 
 void vigenereEncrypt(char input[], char keyword[]) {
-
     int inputLength = strlen(input);
     int keywordLength = strlen(keyword);
-    int i, j;
+    int i, j = 0;
 
-    for (i = 0, j = 0; i < inputLength; ++i) {
-
+    for (i = 0; i < inputLength; ++i) {
         char curChar = input[i];
 
-         if ((curChar >= 'a' && curChar <= 'z') || (curChar >= 'A' && curChar <= 'Z')) {
+        if ((curChar >= 'a' && curChar <= 'z') || (curChar >= 'A' && curChar <= 'Z')) {
             char base = (curChar >= 'a' && curChar <= 'z') ? 'a' : 'A';
-            input[i] = (curChar + keyword[j] - 2 * base) % 26 + base;
+            char keywordChar = keyword[j];
+
+            input[i] = (curChar - base + keywordChar - 'a') % 26 + base;
             ++j;
 
             if (j == keywordLength) {
-                j = 0; 
+                j = 0;
             }
-         }
+        }
     }
 }
 
