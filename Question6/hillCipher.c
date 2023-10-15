@@ -12,7 +12,40 @@ int modInverse(int a, int m) {
     return -1;
 }
 
+void hillCipher(char* input, char* keyword) {
+
+    int keywordMatrix[2][2];
+    int message[2];
+    int result[2];
+
+    // Create the key matrix from the keyword
+    keywordMatrix[0][0] = (keyword[0] >= 'a' && keyword[0] <= 'z') ? keyword[0] - 'a' : keyword[0] - 'A';
+    keywordMatrix[0][1] = (keyword[1] >= 'a' && keyword[1] <= 'z') ? keyword[1] - 'a' : keyword[1] - 'A';
+    keywordMatrix[1][0] = (keyword[2] >= 'a' && keyword[2] <= 'z') ? keyword[2] - 'a' : keyword[2] - 'A';
+    keywordMatrix[1][1] = (keyword[3] >= 'a' && keyword[3] <= 'z') ? keyword[3] - 'a' : keyword[3] - 'A';
+
+    for (int i = 0; input[i] != '\0'; i += 2) {
+
+        message[0] = (input[i] >= 'a' && input[i] <= 'z') ? input[i] - 'a' : input[i] - 'A';
+        message[1] = (input[i + 1] >= 'a' && input[i + 1] <= 'z') ? input[i + 1] - 'a' : input[i + 1] - 'A';
+        
+        for (int j = 0; j <2; j++) {
+
+            result[j] = 0;
+            
+            for (int k = 0; k < 2; k++) {
+                result[j] += keywordMatrix[j][k] * message[k];
+            }
+            result[j] = (result[j] + 26) % 26;
+        }
+
+          printf("%c%c", result[0] + ((input[i] >= 'a' && input[i] <= 'z') ? 'a' : 'A'),
+               result[1] + ((input[i + 1] >= 'a' && input[i + 1] <= 'z') ? 'a' : 'A'));
+    }
+}
+
 int main() {
+
     char input[100];
     char keyword[5];
 
