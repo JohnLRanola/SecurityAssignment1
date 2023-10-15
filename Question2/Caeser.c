@@ -3,9 +3,15 @@
 // Function for cipher
 void caesarCipher(char input[], int shift) {
     for (int i = 0; input[i] != '\0'; ++i) {
+
         // for uppercase characters
         if (input[i] >= 'A' && input[i] <= 'Z') {
             input[i] = (input[i] - 'A' + shift) % 26 + 'A';
+        }
+
+        // for lowercase characters
+        else if (input[i] >= 'a' && input[i] <= 'z') {
+            input[i] = (input[i] - 'a' + shift) % 26 + 'a';
         }
     }
 }
