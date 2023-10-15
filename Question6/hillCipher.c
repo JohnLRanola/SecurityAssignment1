@@ -9,6 +9,7 @@ int modInverse(int a, int m) {
             return x;
         }
     }
+    return -1;
 }
 
 int main() {
