@@ -16,8 +16,16 @@ void vigenereEncrypt(char input[], char keyword[]) {
         if (inputChar >= 'A' && inputChar <= 'Z') {
             enryptedText[i] = ((inputChar - 'A' + keywordChar - 'A') % 26);
         }
-    }
 
+        // Encrypt lowercase 
+        else if (inputChar >= 'a' && inputChar <= 'z') {
+            enryptedText[i] = ((inputChar - 'a' + keywordChar - 'a') % 26);
+
+        }
+    }
+    enryptedText[inputLength] = '\0';
+
+    printf("Encrypted Text: %s\n", enryptedText);
 
 }
 
