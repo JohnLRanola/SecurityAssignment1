@@ -1,31 +1,22 @@
 #include <stdio.h>
 #include <string.h>
 
-int modInverse(int a, int m) {
-    a = a % m;
-
-    for (int x = 1; x < m; x++) {
-        if ((a * x) % m == 1) {
-            return x;
-        }
-    }
-    return -1;
-}
-
 void hillCipher(char* input, char* keyword) {
 
     int keywordMatrix[2][2];
     int message[2];
     int result[2];
 
-    // Create the key matrix from the keyword
+    // Keyword is mapped as integers and stored in the matrix
     keywordMatrix[0][0] = (keyword[0] >= 'a' && keyword[0] <= 'z') ? keyword[0] - 'a' : keyword[0] - 'A';
     keywordMatrix[0][1] = (keyword[1] >= 'a' && keyword[1] <= 'z') ? keyword[1] - 'a' : keyword[1] - 'A';
     keywordMatrix[1][0] = (keyword[2] >= 'a' && keyword[2] <= 'z') ? keyword[2] - 'a' : keyword[2] - 'A';
     keywordMatrix[1][1] = (keyword[3] >= 'a' && keyword[3] <= 'z') ? keyword[3] - 'a' : keyword[3] - 'A';
 
+    // Processes 2 characters from input and converts to numbers
     for (int i = 0; input[i] != '\0'; i += 2) {
 
+    // Input is mapped as intgers and stored in message array
         message[0] = (input[i] >= 'a' && input[i] <= 'z') ? input[i] - 'a' : input[i] - 'A';
         message[1] = (input[i + 1] >= 'a' && input[i + 1] <= 'z') ? input[i + 1] - 'a' : input[i + 1] - 'A';
         
